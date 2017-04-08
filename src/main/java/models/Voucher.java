@@ -2,7 +2,7 @@ package models;
 
 import java.io.Serializable;
 
-public class Vaucher implements Serializable {
+public class Voucher implements Serializable {
 
     private static final long serialVersionUID = 11L;
 
@@ -13,10 +13,10 @@ public class Vaucher implements Serializable {
     private Hotel hotel;
     private City city;
 
-    public Vaucher() {
+    public Voucher() {
     }
 
-    public Vaucher(double cost, Route route, AirlaneCompany airlaneCompany, Hotel hotel, City city) {
+    public Voucher(double cost, Route route, AirlaneCompany airlaneCompany, Hotel hotel, City city) {
         this.cost = cost;
         this.route = route;
         this.airlaneCompany = airlaneCompany;
@@ -74,7 +74,7 @@ public class Vaucher implements Serializable {
 
     @Override
     public String toString() {
-        return "Vaucher[" +
+        return "Voucher[" +
                 "id=" + id +
                 ", cost=" + cost +
                 ", route=" + route +

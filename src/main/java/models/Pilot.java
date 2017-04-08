@@ -8,12 +8,12 @@ public class Pilot implements Serializable {
 
     private long id;
     private String fullname;
-    private String expirience;
+    private int expirience;
 
     public Pilot() {
     }
 
-    public Pilot(String fullname, String expirience) {
+    public Pilot(String fullname, int expirience) {
         this.fullname = fullname;
         this.expirience = expirience;
     }
@@ -34,11 +34,11 @@ public class Pilot implements Serializable {
         this.fullname = fullname;
     }
 
-    public String getExpirience() {
+    public int getExpirience() {
         return expirience;
     }
 
-    public void setExpirience(String expirience) {
+    public void setExpirience(int expirience) {
         this.expirience = expirience;
     }
 

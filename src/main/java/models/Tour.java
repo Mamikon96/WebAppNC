@@ -7,13 +7,13 @@ public class Tour implements Serializable {
     private static final long serialVersionUID = 12L;
 
     private long id;
-    private Vaucher vaucher;
+    private Voucher voucher;
 
     public Tour() {
     }
 
-    public Tour(Vaucher vaucher) {
-        this.vaucher = vaucher;
+    public Tour(Voucher voucher) {
+        this.voucher = voucher;
     }
 
     public long getId() {
@@ -24,19 +24,19 @@ public class Tour implements Serializable {
         this.id = id;
     }
 
-    public Vaucher getVaucher() {
-        return vaucher;
+    public Voucher getVoucher() {
+        return voucher;
     }
 
-    public void setVaucher(Vaucher vaucher) {
-        this.vaucher = vaucher;
+    public void setVoucher(Voucher voucher) {
+        this.voucher = voucher;
     }
 
     @Override
     public String toString() {
         return "Tour[" +
                 "id=" + id +
-                ", vaucher=" + vaucher +
+                ", voucher=" + voucher +
                 "]";
     }
 }

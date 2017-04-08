@@ -8,13 +8,13 @@ public class AirlaneCompany implements Serializable {
 
     private long id;
     private String name;
-    private int costCoeff;
+    private double costCoeff;
     private int rating;
 
     public AirlaneCompany() {
     }
 
-    public AirlaneCompany(String name, int costCoeff, int rating) {
+    public AirlaneCompany(String name, double costCoeff, int rating) {
         this.name = name;
         this.costCoeff = costCoeff;
         this.rating = rating;
@@ -36,11 +36,11 @@ public class AirlaneCompany implements Serializable {
         this.name = name;
     }
 
-    public int getCostCoeff() {
+    public double getCostCoeff() {
         return costCoeff;
     }
 
-    public void setCostCoeff(int costCoeff) {
+    public void setCostCoeff(double costCoeff) {
         this.costCoeff = costCoeff;
     }
 

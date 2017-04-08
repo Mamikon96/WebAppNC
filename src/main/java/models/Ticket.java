@@ -9,15 +9,15 @@ public class Ticket implements Serializable {
     private long id;
     private String buyer;
     private String data;
-    private Vaucher vaucher;
+    private Voucher voucher;
 
     public Ticket() {
     }
 
-    public Ticket(String buyer, String data, Vaucher vaucher) {
+    public Ticket(String buyer, String data, Voucher voucher) {
         this.buyer = buyer;
         this.data = data;
-        this.vaucher = vaucher;
+        this.voucher = voucher;
     }
 
     public long getId() {
@@ -44,12 +44,12 @@ public class Ticket implements Serializable {
         this.data = data;
     }
 
-    public Vaucher getVaucher() {
-        return vaucher;
+    public Voucher getVoucher() {
+        return voucher;
     }
 
-    public void setVaucher(Vaucher vaucher) {
-        this.vaucher = vaucher;
+    public void setVoucher(Voucher voucher) {
+        this.voucher = voucher;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Ticket implements Serializable {
                 "id=" + id +
                 ", buyer=" + buyer +
                 ", data=" + data +
-                ", vaucher=" + vaucher +
+                ", voucher=" + voucher +
                 "]";
     }
 }
