@@ -30,9 +30,8 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
-                    flag = false;
                 }
-            } else flag = false;
+            }
         }
         return flag;
     }
@@ -58,9 +57,8 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
-                    flag = false;
                 }
-            } else flag = false;
+            }
         }
         return flag;
     }
@@ -80,9 +78,8 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
-                    flag = false;
                 }
-            } else flag = false;
+            }
         }
         return flag;
     }

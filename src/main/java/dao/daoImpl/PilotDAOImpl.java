@@ -28,9 +28,8 @@ public class PilotDAOImpl implements PilotDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
-                    flag = false;
                 }
-            } else flag = false;
+            }
         }
         return flag;
     }
@@ -54,9 +53,8 @@ public class PilotDAOImpl implements PilotDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
-                    flag = false;
                 }
-            } else flag = false;
+            }
         }
         return flag;
     }
@@ -76,9 +74,8 @@ public class PilotDAOImpl implements PilotDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
-                    flag = false;
                 }
-            } else flag = false;
+            }
         }
         return flag;
     }
