@@ -9,7 +9,7 @@ public interface PilotDAO {
     boolean addPilot(Pilot pilot);
     boolean updatePilot(Pilot pilot);
     boolean deletePilot(Pilot pilot);
-    Pilot getPilotById(long pilotId);
+    Pilot getPilotById(long id);
     Pilot getPilotByFullname(String fullname);
     List<Pilot> getAllPilots();
 }

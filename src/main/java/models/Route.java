@@ -7,17 +7,17 @@ public class Route implements Serializable {
     private static final long serialVersionUID = 4L;
 
     private long id;
-    private String from;
-    private String to;
+    private City startCity;
+    private City endCity;
     private String flightTime;
     private Plane plane;
 
     public Route() {
     }
 
-    public Route(String from, String to, String flightTime, Plane plane) {
-        this.from = from;
-        this.to = to;
+    public Route(City startCity, City endCity, String flightTime, Plane plane) {
+        this.startCity = startCity;
+        this.endCity = endCity;
         this.flightTime = flightTime;
         this.plane = plane;
     }
@@ -30,20 +30,20 @@ public class Route implements Serializable {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public City getStartCity() {
+        return startCity;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setStartCity(City startCity) {
+        this.startCity = startCity;
     }
 
-    public String getTo() {
-        return to;
+    public City getEndCity() {
+        return endCity;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setEndCity(City endCity) {
+        this.endCity = endCity;
     }
 
     public String getFlightTime() {
@@ -66,8 +66,8 @@ public class Route implements Serializable {
     public String toString() {
         return "Route[" +
                         "id=" + id +
-                        ", from=" + from +
-                        ", to=" + to +
+                        ", startCity=" + startCity +
+                        ", endCity=" + endCity +
                         ", flightTime=" + flightTime +
                         ", plane=" + plane +
                 "]";

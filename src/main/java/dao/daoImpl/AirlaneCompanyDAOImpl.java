@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
@@ -30,8 +31,9 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
+                    flag = false;
                 }
-            }
+            } else flag = false;
         }
         return flag;
     }
@@ -57,8 +59,9 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
+                    flag = false;
                 }
-            }
+            } else flag = false;
         }
         return flag;
     }
@@ -78,20 +81,21 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
                 try {
                     connection.close();
                 } catch (SQLException ex){
+                    flag = false;
                 }
-            }
+            } else flag = false;
         }
         return flag;
     }
 
-    public AirlaneCompany getAirlaneCompanyById(long airlaneCompanyId) {
+    public AirlaneCompany getAirlaneCompanyById(long id) {
         AirlaneCompany airlaneCompany = new AirlaneCompany();
         Connection connection = JDBCUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * " +
                                                                     "FROM Airlane_company " +
                                                                     "WHERE company_id = ?");
-            ps.setLong(1, airlaneCompanyId);
+            ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
             airlaneCompany.setId(rs.getLong("company_id"));
@@ -208,15 +212,16 @@ public class AirlaneCompanyDAOImpl implements AirlaneCompanyDAO {
     }
 
     private List<AirlaneCompany> getAirlaneCompanies(ResultSet rs) throws SQLException {
-        List<AirlaneCompany> companies = new ArrayList<AirlaneCompany>();
-        AirlaneCompany company = new AirlaneCompany();
+        LinkedList<AirlaneCompany> companies = new LinkedList<AirlaneCompany>();
+        AirlaneCompany company;
         while (rs.next()){
+            company = new AirlaneCompany();
             company.setId(rs.getLong("company_id"));
             company.setName(rs.getString("name"));
             company.setCostCoeff(rs.getInt("cost_coeff"));
             company.setRating(rs.getInt("rating"));
 
-            companies.add(company);
+            companies.addLast(company);
         }
         return companies;
     }

@@ -7,13 +7,15 @@ public class Plane implements Serializable {
     private static final long serialVersionUID = 2L;
 
     private long id;
+    private String name;
     private int places;
     private Pilot pilot;
 
     public Plane() {
     }
 
-    public Plane(Integer places, Pilot pilot) {
+    public Plane(String name, int places, Pilot pilot) {
+        this.name = name;
         this.places = places;
         this.pilot = pilot;
     }
@@ -24,6 +26,14 @@ public class Plane implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPlaces() {
@@ -46,6 +56,7 @@ public class Plane implements Serializable {
     public String toString() {
         return "Plane[" +
                         "id=" + id +
+                        ", name=" + name +
                         ", places=" + places +
                         ", pilot=" + pilot +
                 "]";

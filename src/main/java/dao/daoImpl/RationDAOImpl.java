@@ -1,26 +1,25 @@
 package dao.daoImpl;
 
-import dao.PilotDAO;
-import models.Pilot;
+import dao.RationDAO;
+import models.Ration;
 import util.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PilotDAOImpl implements PilotDAO {
-    public boolean addPilot(Pilot pilot) {
+public class RationDAOImpl implements RationDAO {
+    public boolean addRation(Ration ration) {
         boolean flag = true;
         Connection connection = JDBCUtil.getConnection();
         try {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO pilots " +
-                                                                    "VALUES (pilots_seq.NEXTVAL, ?, ?)");
-            ps.setString(1, pilot.getFullname());
-            ps.setInt(2, pilot.getExpirience());
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO rations " +
+                            "(ration_id, description) " +
+                    "VALUES (rations_seq.NEXTVAL, ?)");
+            ps.setString(1, ration.getDescription());
             ps.executeUpdate();
         } catch (SQLException ex){
             flag = false;
@@ -35,17 +34,15 @@ public class PilotDAOImpl implements PilotDAO {
         return flag;
     }
 
-    public boolean updatePilot(Pilot pilot) {
+    public boolean updateRation(Ration ration) {
         boolean flag = true;
         Connection connection = JDBCUtil.getConnection();
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE pilots SET " +
-                                                                            "fullname = ?," +
-                                                                            "expirience = ?" +
-                                                                    "WHERE pilot_id = ?");
-            ps.setString(1, pilot.getFullname());
-            ps.setInt(2, pilot.getExpirience());
-            ps.setLong(3, pilot.getId());
+            PreparedStatement ps = connection.prepareStatement("UPADTE rations SET " +
+                    "description = ?" +
+                    "WHERE ration_id = ?");
+            ps.setString(1, ration.getDescription());
+            ps.setLong(2, ration.getId());
             ps.executeUpdate();
         } catch (SQLException ex){
             flag = false;
@@ -60,13 +57,12 @@ public class PilotDAOImpl implements PilotDAO {
         return flag;
     }
 
-    public boolean deletePilot(Pilot pilot) {
+    public boolean deleteRation(Ration ration) {
         boolean flag = true;
         Connection connection = JDBCUtil.getConnection();
         try {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM pilots " +
-                                                                    "WHERE pilot_id = ?");
-            ps.setLong(1, pilot.getId());
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM rations WHERE ration_id = ?");
+            ps.setLong(1, ration.getId());
             ps.executeUpdate();
         } catch (SQLException ex){
             flag = false;
@@ -81,21 +77,20 @@ public class PilotDAOImpl implements PilotDAO {
         return flag;
     }
 
-    public Pilot getPilotById(long id) {
-        Pilot pilot = new Pilot();
+    public Ration getRationById(long id) {
+        Ration ration = new Ration();
         Connection connection = JDBCUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * " +
-                                                                    "FROM pilots " +
-                                                                    "WHERE pilot_id = ?");
+                    "FROM rations " +
+                    "WHERE ration_id = ?");
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            pilot.setId(rs.getLong("pilot_id"));
-            pilot.setFullname(rs.getString("fullname"));
-            pilot.setExpirience(rs.getInt("expirience"));
+            ration.setId(id);
+            ration.setDescription(rs.getString("description"));
         } catch (SQLException ex){
-            pilot = new Pilot();
+            ration = new Ration();
         } finally {
             if (connection != null) {
                 try {
@@ -104,24 +99,23 @@ public class PilotDAOImpl implements PilotDAO {
                 }
             }
         }
-        return pilot;
+        return ration;
     }
 
-    public Pilot getPilotByFullname(String fullname) {
-        Pilot pilot = new Pilot();
+    public Ration getRationByDescription(String description) {
+        Ration ration = new Ration();
         Connection connection = JDBCUtil.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT * " +
-                                                                    "FROM pilots " +
-                                                                    "WHERE fullname = ?");
-            ps.setString(1, fullname);
+                    "FROM rations " +
+                    "WHERE description = ?");
+            ps.setString(1, description);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            pilot.setId(rs.getLong("pilot_id"));
-            pilot.setFullname(rs.getString("fullname"));
-            pilot.setExpirience(rs.getInt("expirience"));
+            ration.setId(rs.getLong("ration_id"));
+            ration.setDescription(description);
         } catch (SQLException ex){
-            pilot = new Pilot();
+            ration = new Ration();
         } finally {
             if (connection != null) {
                 try {
@@ -130,27 +124,26 @@ public class PilotDAOImpl implements PilotDAO {
                 }
             }
         }
-        return pilot;
+        return ration;
     }
 
-    public List<Pilot> getAllPilots() {
-        LinkedList<Pilot> pilots = new LinkedList<Pilot>();
+    public List<Ration> getAllRations() {
+        LinkedList<Ration> rations = new LinkedList<Ration>();
         Connection connection = JDBCUtil.getConnection();
         try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM pilots");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM rations");
             ResultSet rs = ps.executeQuery();
 
-            Pilot pilot;
+            Ration ration;
             while (rs.next()){
-                pilot = new Pilot();
-                pilot.setId(rs.getLong("pilot_id"));
-                pilot.setFullname(rs.getString("fullname"));
-                pilot.setExpirience(rs.getInt("expirience"));
+                ration = new Ration();
+                ration.setId(rs.getLong("ration_id"));
+                ration.setDescription(rs.getString("description"));
 
-                pilots.addLast(pilot);
+                rations.addLast(ration);
             }
         } catch (SQLException ex){
-            pilots = new LinkedList<Pilot>();
+            rations = new LinkedList<Ration>();
         } finally {
             if (connection != null) {
                 try {
@@ -159,6 +152,6 @@ public class PilotDAOImpl implements PilotDAO {
                 }
             }
         }
-        return pilots;
+        return rations;
     }
 }
